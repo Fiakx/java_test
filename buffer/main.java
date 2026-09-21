@@ -47,6 +47,7 @@ class arr {
                 this.accf=0;
             }
         }else{
+            assert 1<0 : "It's not possible to add a number : arr is full";
             System.out.println("It's not possible to add a number : arr is full");
         }
         
@@ -70,12 +71,13 @@ public class main {
         a.arr = new int[10];
 
         
-        for (int i = 0 ; i<a.arr.length; i++){
+        for (int i = 0 ; i<a.arr.length ; i++){
             a.add(i);
             a.print();
             System.out.println(a.accf);
             System.out.println(i);
         }
+        a.add(3);
         a.print();
         System.out.println(a.accd);
         a.del();
