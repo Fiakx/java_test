@@ -39,13 +39,9 @@ class arr {
             this.arr[0]=elem;
             this.accf=1;
         }else if ((this.accf)%(this.arr.length)!=this.accd){
-            if (this.arr.length-1 != this.accf-1){
-                this.arr[this.accf]=elem;
-                this.accf+=1;
-            }else{
-                this.arr[0]=elem;
-                this.accf=0;
-            }
+            this.arr[this.accf]=elem;
+            this.accf= (this.accf+1)%(this.arr.length);
+            
         }else{
             assert 1<0 : "It's not possible to add a number : arr is full";
             System.out.println("It's not possible to add a number : arr is full");
@@ -62,6 +58,13 @@ class arr {
         }
     }
 
+    public void del_ind(int ind){
+        for (int i =0; i <this.arr.length - ind; i++){
+            this.arr[i%this.arr.length]=this.arr[(i+1)%this.arr.length];
+            this.accf = (this.accf-1)%(this.arr.length-1);
+        }
+    }
+
 }
 
 public class main {
@@ -70,19 +73,16 @@ public class main {
         arr a = new arr();
         a.arr = new int[10];
 
-        
+        /* tests zone */
         for (int i = 0 ; i<a.arr.length ; i++){
             a.add(i);
-            a.print();
-            System.out.println(a.accf);
-            System.out.println(i);
+            System.out.println("accf :"+a.accf);
         }
-        a.add(3);
+        System.out.println("Before suppression :");
         a.print();
-        System.out.println(a.accd);
-        a.del();
+        a.del_ind(4);
+        System.out.println("After suppression : ");
         a.print();
-        System.out.println(a.accd);
 
     }
 }
