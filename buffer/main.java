@@ -59,8 +59,12 @@ class arr {
     }
 
     public void del_ind(int ind){
+        /* We put the index of the number in the queue and it will delet it 
+        (I must change things later, like the fact that it's more intresting to shift 
+        to the right or to the left depending on the index relative to length of the array) 
+        */
         for (int i =0; i <this.arr.length - ind; i++){
-            this.arr[i%this.arr.length]=this.arr[(i+1)%this.arr.length];
+            this.arr[(i+ind)%this.arr.length]=this.arr[(ind+i+1)%this.arr.length];
             this.accf = (this.accf-1)%(this.arr.length-1);
         }
     }
