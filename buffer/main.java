@@ -51,11 +51,10 @@ class arr {
     }
 
     public void del(){
-        if (this.accd!=0){
-            this.accd-=1;
-        }else{
-            this.accd = this.arr.length -1;
-        }
+        this.arr[accd]=0;
+        this.accd = (this.accd + 1)%(this.arr.length);
+        
+        
     }
 
     public void del_ind(int ind){
@@ -79,26 +78,26 @@ class arr {
             int rtablgth = this.arr.length - this.accd + this.accf;
             if ((ind)<(rtablgth/2)){
                 for (int i =0; i < ind; i++){
-                    this.arr[(ind)%this.arr.length]=this.arr[(i)%this.arr.length];
-                    this.accd = (this.accd-1)%(this.arr.length-1);
+                    this.arr[(ind)%this.arr.length]=this.arr[(ind-i)%this.arr.length];
+                    this.accd = (this.accd-1)%(this.arr.length);
                 }
             }else{
                 for (int i =0; i <this.arr.length - ind; i++){
                     this.arr[(i+ind)%this.arr.length]=this.arr[(ind+i+1)%this.arr.length];
-                    this.accf = (this.accf-1)%(this.arr.length-1);
+                    this.accf = (this.accf-1)%(this.arr.length);
                 }
             }
         }else{
             int rtablgth = this.accf + this.accd;
             if ((ind)<(rtablgth/2)){
                 for (int i =0; i < ind; i++){
-                    this.arr[(ind)%this.arr.length]=this.arr[(i)%this.arr.length];
-                    this.accd = (this.accd-1)%(this.arr.length-1);
+                    this.arr[(ind)%this.arr.length]=this.arr[(ind-i)%this.arr.length];
+                    this.accd = (this.accd-1)%(this.arr.length);
                 }
             }else{
                 for (int i =0; i <this.arr.length - ind; i++){
                     this.arr[(i+ind)%this.arr.length]=this.arr[(ind+i+1)%this.arr.length];
-                    this.accf = (this.accf-1)%(this.arr.length-1);
+                    this.accf = (this.accf-1)%(this.arr.length);
                 }
             }
         }
@@ -113,16 +112,36 @@ public class main {
         arr a = new arr();
         a.arr = new int[10];
 
+
         /* tests zone */
+
         for (int i = 0 ; i<a.arr.length ; i++){
             a.add(i);
-            System.out.println("accf :"+a.accf);
         }
-        System.out.println("Before suppression :");
+
+        
+
+        /* tests on the del_ind function */
+
+        System.out.println("Test delete after mid :");
+        System.out.println("Before delete :");
         a.print();
         a.del_ind(7);
-        System.out.println("After suppression : ");
+        System.out.println("After delete : ");
+        a.print();
+        System.out.println("Test delete before mid :");
+        System.out.println("Before delete :");
+        a.print();
+        a.del_ind(2);
+        System.out.println("After delete: ");
         a.print();
 
+        /* tests sur del 
+        System.out.println("Before unqueue :");
+        a.print();
+        a.del();
+        System.out.println("After unqueue: ");
+        a.print();
+        */
     }
 }
