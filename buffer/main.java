@@ -62,11 +62,47 @@ class arr {
         /* We put the index of the number in the queue and it will delet it 
         (I must change things later, like the fact that it's more intresting to shift 
         to the right or to the left depending on the index relative to length of the array) 
+
+
+        if (f < d)
+            length - d + f
+
+        else
+            f - d 
+
+
+
+        accd + ind 
+
         */
-        for (int i =0; i <this.arr.length - ind; i++){
-            this.arr[(i+ind)%this.arr.length]=this.arr[(ind+i+1)%this.arr.length];
-            this.accf = (this.accf-1)%(this.arr.length-1);
+        if (this.accf<this.accd){
+            int rtablgth = this.arr.length - this.accd + this.accf;
+            if ((ind)<(rtablgth/2)){
+                for (int i =0; i < ind; i++){
+                    this.arr[(ind)%this.arr.length]=this.arr[(i)%this.arr.length];
+                    this.accd = (this.accd-1)%(this.arr.length-1);
+                }
+            }else{
+                for (int i =0; i <this.arr.length - ind; i++){
+                    this.arr[(i+ind)%this.arr.length]=this.arr[(ind+i+1)%this.arr.length];
+                    this.accf = (this.accf-1)%(this.arr.length-1);
+                }
+            }
+        }else{
+            int rtablgth = this.accf + this.accd;
+            if ((ind)<(rtablgth/2)){
+                for (int i =0; i < ind; i++){
+                    this.arr[(ind)%this.arr.length]=this.arr[(i)%this.arr.length];
+                    this.accd = (this.accd-1)%(this.arr.length-1);
+                }
+            }else{
+                for (int i =0; i <this.arr.length - ind; i++){
+                    this.arr[(i+ind)%this.arr.length]=this.arr[(ind+i+1)%this.arr.length];
+                    this.accf = (this.accf-1)%(this.arr.length-1);
+                }
+            }
         }
+        
     }
 
 }
@@ -84,7 +120,7 @@ public class main {
         }
         System.out.println("Before suppression :");
         a.print();
-        a.del_ind(4);
+        a.del_ind(7);
         System.out.println("After suppression : ");
         a.print();
 
